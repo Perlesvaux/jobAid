@@ -13,18 +13,26 @@ const airlines = {"001":"AA","002":"2G","005":"CO","006":"DL","012":"NW","014":"
 
 //
 function IATAsearch(AL){
+
+
     
     if (AL.length == 2){
         //input IATA two-letter code, output airline name
         if (airlines[AL.toLowerCase()] != undefined )
-        {return airlines[AL.toLowerCase()]}
+        {   let keyN = ''
+            
+            Object.keys(airlines).forEach(prop=> {if (airlines[prop] ==  AL.toUpperCase()) keyN = prop})
+            return `${keyN} ${airlines[keyN]} ${airlines[AL.toLowerCase()]}`
+        }
+        //{return airlines[AL.toLowerCase()]}
 
         
     } else if (AL.length > 3){
         //input airline name, output two-letter code
         let keyName = ''
         Object.keys(airlines).forEach(prop=> {if (airlines[prop] ==  AL.toLowerCase()) keyName=prop})
-        return  keyName;   
+        return  keyName;
+        
 
 
     }  else if (AL.length == 3 && !isNaN(AL))  {
