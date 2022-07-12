@@ -336,7 +336,7 @@
 <body >
 
   <div id='notepad' contenteditable="false">
-    <span id='textbox'contenteditable></br></br></br></br></span>
+    <span id='textbox'contenteditable></br></br></br></span>
   </div>
 
 
@@ -357,7 +357,7 @@
   </a>
 
 
-  <div  style="position:fixed; bottom:0; width:100%; background-color:#0ea771" contenteditable="false">
+  <div style="position:fixed; bottom:0; width:100%; background-color:#0ea771" contenteditable="false">
     <form id='calculator'>
       <input type='text' id='prompt' class='clc' placeholder="    Arithmetic Calculator"></input>
       <button id='calculate' class="calc-btn">➡</button>
@@ -374,7 +374,12 @@
   </div>
 
 
+  <div id="fecha" style="position:fixed;bottom:0em;right:1em;color:white;text-shadow:.7px.7px #000000;font-size:2.0em;" contenteditable="false"></div>
+
+
 <script>
+
+  
 
   // arithmetic calculator
     document.getElementById('calculate').addEventListener('click', (e)=>{
@@ -514,33 +519,20 @@
 
   
 // **********"Back to the Top" button************
-//const scrollLinks = document.querySelectorAll('.scroll-link')
-
 const topBtn = document.querySelector('#top-button')
 console.log(topBtn);
 
-window.addEventListener('scroll', ()=> {
+window.addEventListener('scroll', ()=>
+{
   const distanceScrolled = window.pageYOffset
   
-
-  // switch (distanceScrolled > 250) {
-  //   case true:  
-  //   topBtn.classList.add('show-link'); break
-  //   case false:    
-  //   topBtn.classList.remove('show-link'); break
-  // }
-
-
-    if (distanceScrolled > 250) 
-    {
-      
-      topBtn.style.visibility = "visible"
-    } 
-    else
-    {
-      
-      topBtn.style.visibility = "hidden"
-    }
+  switch (distanceScrolled > 250)
+  {
+    case true:  
+      topBtn.style.visibility = "visible"; break
+    case false:    
+      topBtn.style.visibility = "hidden"; break
+  }
 
 })
 
@@ -553,14 +545,11 @@ class today
     // Year:2000, Month:0-11, Day:1-30, Hour:0-24, Mins:60, Secs:60
     this.td = new Date() 
 
-
     //td pieces
     this.year = this.td.getFullYear()
     this.month = this.months[this.td.getMonth()]
     this.day = this.td.getDate()
- 
   }
-  
 
     months =
     [
@@ -582,8 +571,10 @@ class today
   
 }
 
+dateDisplay = document.getElementById('fecha') 
 const todayIs = new today()
-console.log(todayIs.output)
+///console.log(todayIs.output)
+dateDisplay.textContent = todayIs.output
 
 
 
@@ -593,5 +584,7 @@ console.log(todayIs.output)
 
 
 </script>
-  </body>
+
+
+</body>
 </html>
