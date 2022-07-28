@@ -578,11 +578,16 @@ function showClearCalcBtn()
 
 
       
-      contents.addEventListener("click", ()=>
+      
+contents.addEventListener("click", ()=>
+      //contents.addEventListener("keyup", (e)=>
       {
+        // if (e.key == "Escape")
+        // {
+
         for (let n=0; n<count; n++ )
         {
-          //sustancia[contents.childNodes[n].id] = articles[n].childNodes[1].innerHTML 
+         
           sustancia[contents.childNodes[n].id] = contents.childNodes[n].innerHTML 
           
         }
@@ -590,8 +595,10 @@ function showClearCalcBtn()
         
 
         const u_dict = JSON.stringify(sustancia)
-        //console.log(u_dict);
+        
         updateD.innerHTML = `const sustancia = ${u_dict}` 
+
+        //}
       })
       
     
