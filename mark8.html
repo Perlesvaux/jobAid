@@ -328,7 +328,7 @@
 
 <body >
 
-  <textarea id="notepad" placeholder="Notes go here! Paste screenshots below ↓ Shift+Ctrl+S (Edge & Firefox)"></textarea>
+  <textarea id="notepad" placeholder=" —Notes go here! &#x0a &#x0a To customize tabs below, press ESC after updating them —then, CTRL+S &#x0a &#x0a Screenshot: Shift+Ctrl+S (Edge & Firefox) or Shift+Win+S &#x0a &#x0a Paste screenshots on placeholder below ↓"></textarea>
 
   <div id='scratchpad' contenteditable="false">
     <div id='scratchpad-inner'contenteditable></br></br></div>
@@ -522,7 +522,8 @@ function showClearCalcBtn()
 
     const articles = document.querySelectorAll(".content")
 
-    about.addEventListener('click', (e)=> {
+    about.addEventListener('click', (e)=>
+    {
       const id = e.target.dataset.id
 
         switch (id != undefined)
@@ -549,82 +550,53 @@ function showClearCalcBtn()
 
     })
 
-    const leyenda = contents.childNodes
-
-      
-    //console.log(articles[0].childNodes[1].innerHTML);
+  // **********Real-time Update************   
+    let count = 0 // Measures length of object --sustancia
+    for (k in sustancia) if (sustancia.hasOwnProperty(k)) ++count;
     
-
-    // addEventListener("keyup", ()=>
-    //   {
-    //   sustancia['main'] = articles[0].childNodes[1].innerHTML
-    //   sustancia['closing'] = articles[1].childNodes[1].innerHTML
-    //   sustancia['entries'] = articles[2].childNodes[1].innerHTML
-    //   sustancia['🚗📞'] = articles[3].childNodes[1].innerHTML
-    //   sustancia['✈📞'] = articles[4].childNodes[1].innerHTML
-    //   sustancia['OID'] = articles[5].childNodes[1].innerHTML
-    //   sustancia['commands'] = articles[6].childNodes[1].innerHTML
-    //   sustancia['FAQ'] = articles[7].childNodes[1].innerHTML
-    //   sustancia['welcome'] = articles[8].childNodes[1].innerHTML
-    //   sustancia['pwd'] = articles[9].childNodes[1].innerHTML
-    //   console.log(sustancia);
-      
-    //   const u_dict = JSON.stringify(sustancia)
-    //   updateD.innerHTML = `const sustancia = ${u_dict}` 
-    //   })
-
-
-
-      let count = 0 // Measures length of object --sustancia
-      for (k in sustancia) if (sustancia.hasOwnProperty(k)) ++count;
-      
-
-
-      
-      
-//contents.addEventListener("click", ()=>
-window.addEventListener("keyup", (e)=>
+    
+    window.addEventListener("keyup", (e)=>
+    {
+      if (e.key == "Escape")
       {
-        if (e.key == "Escape")
+        for (let n=0; n<count; n++ )
         {
-          for (let n=0; n<count; n++ )
-          {
-            sustancia[contents.childNodes[n].id] = contents.childNodes[n].innerHTML  
-          }
-          const u_dict = JSON.stringify(sustancia)
-          updateD.innerHTML = `const sustancia = ${u_dict}` 
-
-          alert('File updated! —> CTRL+S to commit these changes')
+          sustancia[contents.childNodes[n].id] = contents.childNodes[n].innerHTML  
         }
-      })
+        const u_dict = JSON.stringify(sustancia)
+        updateD.innerHTML = `const sustancia = ${u_dict}` 
+
+        alert('File updated! —> CTRL+S to commit these changes')
+      }
+    })
       
     
 
   
-// **********"Back to the Top" button************
-const topBtn = document.querySelector('#top-button')
+  // **********"Back to the Top" button************
+    const topBtn = document.querySelector('#top-button')
 
-window.addEventListener('scroll', ()=>
-{
-  const distanceScrolled = window.pageYOffset
-  
-  switch (distanceScrolled > 110)
-  {
-    case true:  
-      topBtn.style.visibility = "visible"; break
-    case false:    
-      topBtn.style.visibility = "hidden"; break
-  }
+    window.addEventListener('scroll', ()=>
+    {
+      const distanceScrolled = window.pageYOffset
+      
+      switch (distanceScrolled > 110)
+      {
+        case true:  
+          topBtn.style.visibility = "visible"; break
+        case false:    
+          topBtn.style.visibility = "hidden"; break
+      }
 
 
 
-  topBtn.addEventListener('click', ()=>
-  {
-    window.scrollBy( 0,-distanceScrolled)
-    //console.log('wrks!');
-  })
+      topBtn.addEventListener('click', ()=>
+      {
+        window.scrollBy( 0,-distanceScrolled)
+        //console.log('wrks!');
+      })
 
-})
+    })
 
 
 // **********TODAY in DDMMMYY format**********
@@ -658,7 +630,7 @@ dateDisplay.textContent = todayIs.output
 
 
 
-//TODO// to calc: add pop-up clear btn similar to top-button|| 
+//TODO// add decoder|| 
 
 
 
