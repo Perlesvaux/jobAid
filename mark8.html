@@ -6,10 +6,10 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 
-  <link
+  <!-- <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-  />
+  /> -->
   <style media="screen">
     
     @keyframes bounce
@@ -33,6 +33,7 @@
       border-radius: var(--radius);
       color: var(--clr-white);
       animation: bounce 2s ease-in-out infinite;
+      cursor:pointer;
 
       visibility: hidden;
       z-index: 5;
@@ -364,8 +365,10 @@
     <div id="fecha" contenteditable="false"></div>
   </div>
 
-  <a id="top-button" href="#notepad" class="top-link" contenteditable="False">
-    <i class="fas fa-arrow-up"></i> 
+  <!-- <a id="top-button" href="#notepad" class="top-link" contenteditable="False"> -->
+  <a id="top-button" class="top-link" contenteditable="False">
+    ⬆️
+    <!-- <i class="fas fa-arrow-up"></i>  -->
   </a>
 
   <div id="clear-calc" class="top-link" contenteditable="False">C</div>
@@ -416,7 +419,7 @@ function showClearCalcBtn()
   if (AC_condition || TC_condition1 || TC_condition2)
   {
     clearCalcBtn.style.visibility = "visible"
-    console.log('triggered!!!');
+    //console.log('triggered!!!');
   }
 }
 
@@ -579,26 +582,20 @@ function showClearCalcBtn()
 
       
       
-contents.addEventListener("click", ()=>
-      //contents.addEventListener("keyup", (e)=>
+//contents.addEventListener("click", ()=>
+window.addEventListener("keyup", (e)=>
       {
-        // if (e.key == "Escape")
-        // {
-
-        for (let n=0; n<count; n++ )
+        if (e.key == "Escape")
         {
-         
-          sustancia[contents.childNodes[n].id] = contents.childNodes[n].innerHTML 
-          
+          for (let n=0; n<count; n++ )
+          {
+            sustancia[contents.childNodes[n].id] = contents.childNodes[n].innerHTML  
+          }
+          const u_dict = JSON.stringify(sustancia)
+          updateD.innerHTML = `const sustancia = ${u_dict}` 
+
+          alert('File updated! —> CTRL+S to commit these changes')
         }
-        
-        
-
-        const u_dict = JSON.stringify(sustancia)
-        
-        updateD.innerHTML = `const sustancia = ${u_dict}` 
-
-        //}
       })
       
     
@@ -618,6 +615,14 @@ window.addEventListener('scroll', ()=>
     case false:    
       topBtn.style.visibility = "hidden"; break
   }
+
+
+
+  topBtn.addEventListener('click', ()=>
+  {
+    window.scrollBy( 0,-distanceScrolled)
+    //console.log('wrks!');
+  })
 
 })
 
